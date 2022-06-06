@@ -1,5 +1,5 @@
 // ======================================================================== //
-// Copyright 2018-2019 Ingo Wald                                            //
+// Copyright 2022-2023 ZYM-PKU                                           //
 //                                                                          //
 // Licensed under the Apache License, Version 2.0 (the "License");          //
 // you may not use this file except in compliance with the License.         //
@@ -14,6 +14,7 @@
 // limitations under the License.                                           //
 // ======================================================================== //
 
+
 #pragma once
 
 // our own classes, partly shared between host and device
@@ -21,8 +22,8 @@
 #include "LaunchParams.h"
 #include "Model.h"
 
-/*! \namespace osc - Optix Siggraph Course */
-namespace osc {
+/*! \namespace opz - Optix ZYM-PKU */
+namespace opz {
 
   struct Camera {
     /*! camera position - *from* where we are looking */

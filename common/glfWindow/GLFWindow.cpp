@@ -1,5 +1,5 @@
 // ======================================================================== //
-// Copyright 2018-2019 Ingo Wald                                            //
+// Copyright 2022-2023 ZYM-PKU                                           //
 //                                                                          //
 // Licensed under the Apache License, Version 2.0 (the "License");          //
 // you may not use this file except in compliance with the License.         //
@@ -15,9 +15,12 @@
 // ======================================================================== //
 
 #include "GLFWindow.h"
+#include "../imgui-1.87/imgui.h"
+#include "../imgui-1.87/backends/imgui_impl_glfw.h"
+#include "../imgui-1.87/backends/imgui_impl_opengl3.h"
 
-/*! \namespace osc - Optix Siggraph Course */
-namespace osc {
+/*! \namespace opz - Optix ZYM-PKU */
+namespace opz {
   using namespace gdt;
   
   static void glfw_error_callback(int error, const char* description)
@@ -52,6 +55,7 @@ namespace osc {
     glfwSetWindowUserPointer(handle, this);
     glfwMakeContextCurrent(handle);
     glfwSwapInterval( 1 );
+
   }
 
   /*! callback for a window resizing event */
@@ -60,8 +64,6 @@ namespace osc {
     GLFWindow *gw = static_cast<GLFWindow*>(glfwGetWindowUserPointer(window));
     assert(gw);
     gw->resize(vec2i(width,height));
-  // assert(GLFWindow::current);
-  //   GLFWindow::current->resize(vec2i(width,height));
   }
 
   /*! callback for a key press */
@@ -69,29 +71,18 @@ namespace osc {
   {
     GLFWindow *gw = static_cast<GLFWindow*>(glfwGetWindowUserPointer(window));
     assert(gw);
-    if (action == GLFW_PRESS) {
-      gw->key(key,mods);
-    }
+    gw->keyAction(key, action, mods);
   }
 
-  /*! callback for _moving_ the mouse to a new position */
-  static void glfwindow_mouseMotion_cb(GLFWwindow *window, double x, double y) 
+  /*! callback for mouse scroll */
+  static void glfwindow_scroll_cb(GLFWwindow* window, double xoffset, double yoffset)
   {
-    GLFWindow *gw = static_cast<GLFWindow*>(glfwGetWindowUserPointer(window));
-    assert(gw);
-    gw->mouseMotion(vec2i((int)x, (int)y));
+      GLFWindow* gw = static_cast<GLFWindow*>(glfwGetWindowUserPointer(window));
+      assert(gw);
+      gw->scrollAction(yoffset);
   }
 
-  /*! callback for pressing _or_ releasing a mouse button*/
-  static void glfwindow_mouseButton_cb(GLFWwindow *window, int button, int action, int mods) 
-  {
-    GLFWindow *gw = static_cast<GLFWindow*>(glfwGetWindowUserPointer(window));
-    assert(gw);
-    // double x, y;
-    // glfwGetCursorPos(window,&x,&y);
-    gw->mouseButton(button,action,mods);
-  }
-  
+
   void GLFWindow::run()
   {
     int width, height;
@@ -100,14 +91,16 @@ namespace osc {
 
     // glfwSetWindowUserPointer(window, GLFWindow::current);
     glfwSetFramebufferSizeCallback(handle, glfwindow_reshape_cb);
-    glfwSetMouseButtonCallback(handle, glfwindow_mouseButton_cb);
     glfwSetKeyCallback(handle, glfwindow_key_cb);
-    glfwSetCursorPosCallback(handle, glfwindow_mouseMotion_cb);
+    glfwSetScrollCallback(handle, glfwindow_scroll_cb);
+    //glfwSetMouseButtonCallback(handle, glfwindow_mouseButton_cb);
+    //glfwSetCursorPosCallback(handle, glfwindow_mouseMotion_cb);
     
     while (!glfwWindowShouldClose(handle)) {
       render();
       draw();
         
+      CameraMove();
       glfwSwapBuffers(handle);
       glfwPollEvents();
     }

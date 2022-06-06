@@ -14,7 +14,30 @@
 # limitations under the License.                                           #
 # ======================================================================== #
 
+
+# ------------------------------------------------------------------
+# import imgui submodule
+# ------------------------------------------------------------------
+include_directories(
+  ${PROJECT_SOURCE_DIR}/common/imgui-1.87/
+  ${PROJECT_SOURCE_DIR}/common/imgui-1.87/backends
+)
+
+# set common source
+file(GLOB SRC
+    ${PROJECT_SOURCE_DIR}/common/imgui-1.87/*.h
+    ${PROJECT_SOURCE_DIR}/common/imgui-1.87/*.cpp
+)
+
+# set specific source and other option for platform
+file (GLOB PLATFORM_SRC
+    ${PROJECT_SOURCE_DIR}/common/imgui-1.87/backends/imgui_impl_glfw.*
+    ${PROJECT_SOURCE_DIR}/common/imgui-1.87/backends/imgui_impl_opengl3.*
+)
+
+
 add_library(glfWindow
   GLFWindow.h
   GLFWindow.cpp
+  ${SRC} ${PLATFORM_SRC}
   )

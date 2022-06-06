@@ -1,5 +1,5 @@
 // ======================================================================== //
-// Copyright 2018-2019 Ingo Wald                                            //
+// Copyright 2022-2023 ZYM-PKU                                           //
 //                                                                          //
 // Licensed under the Apache License, Version 2.0 (the "License");          //
 // you may not use this file except in compliance with the License.         //
@@ -14,12 +14,14 @@
 // limitations under the License.                                           //
 // ======================================================================== //
 
+
 #pragma once
 
 #include "gdt/math/vec.h"
 #include "optix7.h"
 
-namespace osc {
+/*! \namespace opz - Optix ZYM-PKU */
+namespace opz {
   using namespace gdt;
 
   // for this simple example, we have a single ray type

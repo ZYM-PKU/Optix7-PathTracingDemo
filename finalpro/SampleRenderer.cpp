@@ -1,5 +1,5 @@
 // ======================================================================== //
-// Copyright 2018-2019 Ingo Wald                                            //
+// Copyright 2022-2023 ZYM-PKU                                           //
 //                                                                          //
 // Licensed under the Apache License, Version 2.0 (the "License");          //
 // you may not use this file except in compliance with the License.         //
@@ -14,13 +14,14 @@
 // limitations under the License.                                           //
 // ======================================================================== //
 
+
 #include "SampleRenderer.h"
 #include "LaunchParams.h"
 // this include may only appear in a single source file:
 #include <optix_function_table_definition.h>
 
-/*! \namespace osc - Optix Siggraph Course */
-namespace osc {
+/*! \namespace opz - Optix ZYM-PKU */
+namespace opz {
 
   extern "C" char embedded_ptx_code[];
 

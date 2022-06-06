@@ -16,9 +16,9 @@
 
 #include "SampleRenderer.h"
 
-using namespace osc;
+using namespace opz;
 
-namespace osc {
+namespace opz {
 
   inline __device__ float4 sqrt(float4 f)
   {

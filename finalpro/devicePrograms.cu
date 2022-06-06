@@ -1,5 +1,5 @@
 // ======================================================================== //
-// Copyright 2018-2019 Ingo Wald                                            //
+// Copyright 2022-2023 ZYM-PKU                                           //
 //                                                                          //
 // Licensed under the Apache License, Version 2.0 (the "License");          //
 // you may not use this file except in compliance with the License.         //
@@ -14,17 +14,18 @@
 // limitations under the License.                                           //
 // ======================================================================== //
 
+
 #include <optix_device.h>
 #include <cuda_runtime.h>
 
 #include "LaunchParams.h"
 #include "gdt/random/random.h"
 
-using namespace osc;
+using namespace opz;
 
 #define NUM_LIGHT_SAMPLES 4
 
-namespace osc {
+namespace opz {
 
   typedef gdt::LCG<16> Random;
   

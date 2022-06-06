@@ -1,5 +1,5 @@
 // ======================================================================== //
-// Copyright 2018-2019 Ingo Wald                                            //
+// Copyright 2022-2023 ZYM-PKU                                           //
 //                                                                          //
 // Licensed under the Apache License, Version 2.0 (the "License");          //
 // you may not use this file except in compliance with the License.         //
@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and      //
 // limitations under the License.                                           //
 // ======================================================================== //
+
 
 #include "Model.h"
 #define TINYOBJLOADER_IMPLEMENTATION
@@ -41,8 +42,8 @@ namespace std {
   }
 }
 
-/*! \namespace osc - Optix Siggraph Course */
-namespace osc {
+/*! \namespace opz - Optix ZYM-PKU */
+namespace opz {
   
 
 
